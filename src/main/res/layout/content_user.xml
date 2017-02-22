@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.yo.shishkoam.restclienttest.UserActivity"
+    tools:showIn="@layout/activity_user">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/businessman" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/default_name"
+        android:textSize="@dimen/big_text" />
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/profile_progress"
+        android:textSize="@dimen/small_text" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="@string/money_transfers"
+                android:textSize="@dimen/medium_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingTop="@dimen/medium_margin"
+                android:text="@string/pay_services"
+                android:textSize="@dimen/medium_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingTop="@dimen/medium_margin"
+                android:text="@string/my_payments"
+                android:textSize="@dimen/medium_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingTop="@dimen/medium_margin"
+                android:text="@string/payment_history"
+                android:textSize="@dimen/medium_text"
+                android:id="@+id/payment_history" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingTop="@dimen/medium_margin"
+                android:text="@string/payment_calendar"
+                android:textSize="@dimen/medium_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingTop="@dimen/medium_margin"
+                android:text="@string/wallets"
+                android:textSize="@dimen/medium_text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingTop="@dimen/medium_margin"
+                android:text="@string/cards"
+                android:textSize="@dimen/medium_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableRight="@drawable/number_two_circle"
+                android:gravity="center"
+                android:paddingTop="@dimen/medium_margin"
+                android:text="@string/notifications"
+                android:textSize="@dimen/medium_text" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@color/light_grey"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/info"
+            style="?android:textAppearanceSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/middle_grey"
+            android:drawableLeft="@drawable/settings"
+            android:paddingLeft="4dp"
+            android:text="@string/settings"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/terminals"
+            style="?android:textAppearanceSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:background="@color/middle_grey"
+            android:drawableLeft="@drawable/exit"
+            android:paddingLeft="4dp"
+            android:text="@string/exit"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>
