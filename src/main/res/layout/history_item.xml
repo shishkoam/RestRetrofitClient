@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:text="dd.mm.yyyy"
         android:id="@+id/date"
-        android:layout_height="match_parent" />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_weight="3"
-        android:text="description"
-        android:id="@+id/description"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/medium_margin"
-        android:paddingRight="@dimen/medium_margin"/>
+        android:gravity="center_horizontal"
+        android:text="dd.mm.yyyy" />
+
     <TextView
+        android:id="@+id/description"
         android:layout_width="0dp"
-        android:layout_weight="1"
-        android:text="amount"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:paddingLeft="@dimen/medium_margin"
+        android:paddingRight="@dimen/medium_margin"
+        android:text="@string/default_description" />
+
+    <TextView
         android:id="@+id/amount"
-        android:layout_height="match_parent" />
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="@string/default_amount" />
 </LinearLayout>

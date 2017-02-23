@@ -33,6 +33,8 @@
     <string name="payment_history">История платежей</string>
     <string name="my_payments">Мои платежи</string>
     <string name="pay_services">Оплата услуг</string>
-    <string name="network_error">An error occurred during networking</string>
+    <string name="network_error">Возникли проблемы при получении данных! Проверьте подключение к интернету.</string>
     <string name="uan">"%d грн"</string>
+    <string name="default_amount">0 грн</string>
+    <string name="default_description">Описание платежа отсутствует</string>
 </resources>

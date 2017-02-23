@@ -14,8 +14,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/registration_steps"
-        android:layout_marginBottom="@dimen/medium_margin"/>
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:text="@string/registration_steps" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,9 +32,9 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:hint="@string/what_is_your_name"
                 android:inputType="phone"
-                android:gravity="center"
                 android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
@@ -47,9 +47,9 @@
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:hint="@string/prompt_phone"
                 android:inputType="phone"
-                android:gravity="center"
                 android:maxLines="1" />
 
         </android.support.design.widget.TextInputLayout>
@@ -62,11 +62,11 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:hint="@string/prompt_password"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
-                android:gravity="center"
                 android:inputType="textPassword"
                 android:maxLines="1" />
 
@@ -80,11 +80,11 @@
                 android:id="@+id/repeat_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:hint="@string/repeat_password"
                 android:imeActionId="@+id/login"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
-                android:gravity="center"
                 android:inputType="textPassword"
                 android:maxLines="1" />
 
@@ -97,9 +97,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:background="@android:color/transparent"
+        android:drawableRight="@drawable/chevron_right_24"
         android:gravity="end|center_vertical"
-        android:textSize="@dimen/medium_text"
-        android:textColor="@android:color/holo_orange_dark"
         android:text="@string/next"
-        android:drawableRight="@drawable/chevron_right_24" />
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="@dimen/medium_text" />
 </LinearLayout>

@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         mEmailSignInButton.setOnClickListener(view -> attemptLogin());
 
         loginFormView = findViewById(R.id.login_form);
-        progressView = findViewById(R.id.login_progress);
+        progressView = findViewById(R.id.progress);
 
         Button registrationButton = (Button) findViewById(R.id.registration);
         registrationButton.setOnClickListener(v -> {

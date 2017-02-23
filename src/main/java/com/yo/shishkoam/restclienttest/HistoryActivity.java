@@ -2,7 +2,6 @@ package com.yo.shishkoam.restclienttest;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.yo.shishkoam.restclienttest.api.models.HistoryModel;
-import com.yo.shishkoam.restclienttest.api.models.UserModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +24,7 @@ import retrofit2.Response;
 public class HistoryActivity extends AppCompatActivity {
 
     private ListView historyList;
+    private View progressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +32,23 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         historyList = (ListView) findViewById(R.id.history_list);
+        progressView = findViewById(R.id.history_progress);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
         String token = getIntent().getExtras().getString("token");
-        requestHistory(token);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //run request
+        showProgress(true);
+        requestHistory(token, 1);
     }
 
-    private void requestHistory(String token) {
-        App.getApi().getHistory(token, "2017-02-01T18:43:43.499Z", "2017-02-17T18:43:43.499Z", 1, 10).enqueue(new Callback<HistoryModel>() {
+    private void requestHistory(String token, int pageNumber) {
+        //empty strings says that we request history for whole period
+        App.getApi().getHistory(token, "", "", pageNumber, 10).enqueue(new Callback<HistoryModel>() {
             @Override
             public void onResponse(Call<HistoryModel> call, Response<HistoryModel> response) {
                 if (response.code() == 200 && response.body() != null) {
@@ -58,44 +63,41 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<HistoryModel> call, Throwable t) {
                 showProgress(false);
-                Toast.makeText(HistoryActivity.this, "An error occurred during networking", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HistoryActivity.this, R.string.network_error, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     /**
-     * Shows the progress UI and hides the login form.
+     * Shows the progress UI and hides the content form.
      */
     private void showProgress(final boolean show) {
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-//        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-//        mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-//                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-//            }
-//        });
-//
-//        progressView.setVisibility(show ? View.VISIBLE : View.GONE);
-//        progressView.animate().setDuration(shortAnimTime).alpha(
-//                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                progressView.setVisibility(show ? View.VISIBLE : View.GONE);
-//            }
-//        });
+        historyList.setVisibility(show ? View.GONE : View.VISIBLE);
+        historyList.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                historyList.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
+
+        progressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        progressView.animate().setDuration(shortAnimTime).alpha(
+                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                progressView.setVisibility(show ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // app icon in action bar clicked; go home
-                Intent intent = new Intent(this, UserActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

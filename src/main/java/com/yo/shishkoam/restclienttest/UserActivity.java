@@ -24,6 +24,7 @@ import retrofit2.Response;
 public class UserActivity extends AppCompatActivity {
 
     private View progressView;
+    private View contentView;
     private TextView nameTextView;
     private ProgressBar profileProgressBar;
     private TextView profileProgressTextView;
@@ -32,7 +33,8 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-        progressView = findViewById(R.id.login_progress);
+        progressView = findViewById(R.id.progress);
+        contentView = findViewById(R.id.content);
         nameTextView = (TextView) findViewById(R.id.name);
         profileProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         profileProgressTextView = (TextView) findViewById(R.id.progress_text);
@@ -108,14 +110,14 @@ public class UserActivity extends AppCompatActivity {
     private void showProgress(final boolean show) {
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-//        mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-//        mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-//                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-//            }
-//        });
+        contentView.setVisibility(show ? View.GONE : View.VISIBLE);
+        contentView.animate().setDuration(shortAnimTime).alpha(
+                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                contentView.setVisibility(show ? View.GONE : View.VISIBLE);
+            }
+        });
 
         progressView.setVisibility(show ? View.VISIBLE : View.GONE);
         progressView.animate().setDuration(shortAnimTime).alpha(
