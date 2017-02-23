@@ -23,7 +23,7 @@ public class Item {
     private Integer amount;
     @SerializedName("commission")
     @Expose
-    private Integer commission;
+    private Double commission;
     @SerializedName("instrumentId")
     @Expose
     private Integer instrumentId;
@@ -72,11 +72,11 @@ public class Item {
         this.amount = amount;
     }
 
-    public Integer getCommission() {
+    public Double getCommission() {
         return commission;
     }
 
-    public void setCommission(Integer commission) {
+    public void setCommission(Double commission) {
         this.commission = commission;
     }
 

@@ -37,15 +37,17 @@ public class UserActivity extends AppCompatActivity {
         profileProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         profileProgressTextView = (TextView) findViewById(R.id.progress_text);
         View historyButton = findViewById(R.id.payment_history);
+        String token = getIntent().getExtras().getString("token");
         historyButton.setOnClickListener(v -> {
             Intent intent = new Intent(UserActivity.this, HistoryActivity.class);
+            intent.putExtra("token", token);
             startActivity(intent);
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 
-        String token = getIntent().getExtras().getString("token");
+
         showProgress(true);
         requestUser(token);
     }

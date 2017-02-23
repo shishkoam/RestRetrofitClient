@@ -17,10 +17,10 @@ public class Service {
     private String icon;
     @SerializedName("amountMin")
     @Expose
-    private Integer amountMin;
+    private Double amountMin;
     @SerializedName("amountMax")
     @Expose
-    private Integer amountMax;
+    private Double amountMax;
     @SerializedName("caption")
     @Expose
     private String caption;
@@ -62,19 +62,19 @@ public class Service {
         this.icon = icon;
     }
 
-    public Integer getAmountMin() {
+    public Double getAmountMin() {
         return amountMin;
     }
 
-    public void setAmountMin(Integer amountMin) {
+    public void setAmountMin(Double amountMin) {
         this.amountMin = amountMin;
     }
 
-    public Integer getAmountMax() {
+    public Double getAmountMax() {
         return amountMax;
     }
 
-    public void setAmountMax(Integer amountMax) {
+    public void setAmountMax(Double amountMax) {
         this.amountMax = amountMax;
     }
 
