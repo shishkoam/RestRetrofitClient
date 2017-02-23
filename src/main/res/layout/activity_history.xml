@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/chevron_right" />
+        app:srcCompat="@drawable/chevron_next" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_prev"
@@ -37,5 +37,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/chevron_right" />
+        app:srcCompat="@drawable/chevron_prev" />
 </android.support.design.widget.CoordinatorLayout>

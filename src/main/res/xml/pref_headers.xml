@@ -17,7 +17,7 @@
         android:summary="@string/default_address"
         android:title="@string/my_address" />
 
-    <header android:summary="Управление аккаунтом" />
+    <header android:summary="@string/account_modify" />
 
     <header android:title="@string/limits" />
 

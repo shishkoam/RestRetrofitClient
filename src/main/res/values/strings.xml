@@ -56,5 +56,8 @@
     <string name="default_mail">name@domain.com</string>
     <string name="email">Email</string>
     <string name="contacts">Контакты</string>
-    <string name="common">Общее</string>
+    <string name="common">Общее:</string>
+    <string name="account_modify">Управление аккаунтом</string>
+    <string name="this_is_first_page">Это первая страница.</string>
+    <string name="this_is_last_page">Это последняя страница.</string>
 </resources>

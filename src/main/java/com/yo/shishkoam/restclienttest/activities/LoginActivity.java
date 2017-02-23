@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements Consts {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.content_login);
         // Set up the login form.
         phoneView = (EditText) findViewById(R.id.phone);
 
