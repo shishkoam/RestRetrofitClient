@@ -11,11 +11,18 @@
     <include layout="@layout/content_user" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/exit_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/exit" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/settings_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-
+        app:srcCompat="@drawable/settings_white" />
 </android.support.design.widget.CoordinatorLayout>

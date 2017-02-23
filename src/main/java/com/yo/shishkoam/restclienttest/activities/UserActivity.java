@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -30,6 +29,8 @@ public class UserActivity extends AppCompatActivity implements Consts {
     private TextView nameTextView;
     private ProgressBar profileProgressBar;
     private TextView profileProgressTextView;
+    private View settingsFab;
+    private View exitFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +42,13 @@ public class UserActivity extends AppCompatActivity implements Consts {
         profileProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         profileProgressTextView = (TextView) findViewById(R.id.progress_text);
 
-        View exitButton = findViewById(R.id.exit);
-        exitButton.setOnClickListener(v -> onBackPressed());
-        View settings = findViewById(R.id.settings);
-        settings.setOnClickListener(v -> {
-            Intent intent = new Intent(UserActivity.this, SettingsActivity.class);
-            startActivity(intent);
-        });
+//        View exitButton = findViewById(R.id.exit);
+//        exitButton.setOnClickListener(v -> onBackPressed());
+//        View settings = findViewById(R.id.settings);
+//        settings.setOnClickListener(v -> {
+//            Intent intent = new Intent(UserActivity.this, SettingsActivity.class);
+//            startActivity(intent);
+//        });
 
         View historyButton = findViewById(R.id.payment_history);
         String token = getIntent().getExtras().getString(TOKEN);
@@ -57,8 +58,14 @@ public class UserActivity extends AppCompatActivity implements Consts {
             startActivity(intent);
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> onBackPressed());
+        exitFab = findViewById(R.id.exit_fab);
+        exitFab.setOnClickListener(view -> onBackPressed());
+
+        settingsFab = findViewById(R.id.settings_fab);
+        settingsFab.setOnClickListener(v -> {
+            Intent intent = new Intent(UserActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
 
         showProgress(true);
         requestUser(token);
@@ -121,11 +128,15 @@ public class UserActivity extends AppCompatActivity implements Consts {
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
         contentView.setVisibility(show ? View.GONE : View.VISIBLE);
+        exitFab.setVisibility(show ? View.GONE : View.VISIBLE);
+        settingsFab.setVisibility(show ? View.GONE : View.VISIBLE);
         contentView.animate().setDuration(shortAnimTime).alpha(
                 show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 contentView.setVisibility(show ? View.GONE : View.VISIBLE);
+                exitFab.setVisibility(show ? View.GONE : View.VISIBLE);
+                settingsFab.setVisibility(show ? View.GONE : View.VISIBLE);
             }
         });
 

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -31,14 +32,17 @@ public class LoginActivity extends AppCompatActivity implements Consts {
     private EditText passwordView;
     private View progressView;
     private View loginFormView;
+    private View terminalsFab;
+    private View infoFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_login);
+        setContentView(R.layout.activity_login);
         // Set up the login form.
         phoneView = (EditText) findViewById(R.id.phone);
-
+        terminalsFab = findViewById(R.id.terminal_fab);
+        infoFab = findViewById(R.id.info_fab);
         passwordView = (EditText) findViewById(R.id.password);
         passwordView.setOnEditorActionListener((textView, id, keyEvent) -> {
             if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -75,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements Consts {
         // Store values at the time of the login attempt.
         String phone = phoneView.getText().toString();
         String password = passwordView.getText().toString();
-        phone = phone.replaceAll("[\\-\\+]", "");
+        phone = phone.replaceAll("[\\-\\+ ]", "");
 
         boolean cancel = false;
         View focusView = null;
@@ -105,12 +109,12 @@ public class LoginActivity extends AppCompatActivity implements Consts {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
             requestToken(phone, password);
         }
     }
 
     private void requestToken(String email, String password) {
+        showProgress(true);
         App.getApi().getToken(PASSWORD, email, password).enqueue(new Callback<TokenModel>() {
             @Override
             public void onResponse(Call<TokenModel> call, Response<TokenModel> response) {
@@ -119,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements Consts {
                     intent.putExtra(TOKEN, response.body().getTokenType() + " " + response.body().getAccessToken());
                     startActivity(intent);
                 } else {
-                    Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.wrong_password, Toast.LENGTH_SHORT).show();
                 }
                 showProgress(false);
             }
@@ -147,11 +151,16 @@ public class LoginActivity extends AppCompatActivity implements Consts {
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
         loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+        terminalsFab.setVisibility(show ? View.GONE : View.VISIBLE);
+        infoFab.setVisibility(show ? View.GONE : View.VISIBLE);
+
         loginFormView.animate().setDuration(shortAnimTime).alpha(
                 show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+                terminalsFab.setVisibility(show ? View.GONE : View.VISIBLE);
+                infoFab.setVisibility(show ? View.GONE : View.VISIBLE);
             }
         });
 

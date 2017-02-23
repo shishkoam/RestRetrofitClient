@@ -60,4 +60,5 @@
     <string name="account_modify">Управление аккаунтом</string>
     <string name="this_is_first_page">Это первая страница.</string>
     <string name="this_is_last_page">Это последняя страница.</string>
+    <string name="wrong_password">Пароль введен неверно</string>
 </resources>
