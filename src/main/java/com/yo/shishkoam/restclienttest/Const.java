@@ -9,4 +9,5 @@ public interface Const {
     String PASSWORD = "password";
     int PER_PAGES = 10;
     int SUCCESS_CODE = 200;
+    String CURRENT_PAGE = "current_page";
 }

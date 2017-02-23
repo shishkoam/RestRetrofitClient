@@ -8,7 +8,11 @@
     android:fitsSystemWindows="true"
     tools:context="com.yo.shishkoam.restclienttest.activities.UserActivity">
 
-    <include layout="@layout/content_user" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/content_user" />
+    </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/exit_fab"

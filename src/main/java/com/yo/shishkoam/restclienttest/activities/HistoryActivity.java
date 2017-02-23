@@ -30,6 +30,7 @@ public class HistoryActivity extends AppCompatActivity implements Const {
     private View progressView;
     private int currentPage = 1;
     private int pageCount;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +42,33 @@ public class HistoryActivity extends AppCompatActivity implements Const {
         historyList = (ListView) findViewById(R.id.history_list);
         progressView = findViewById(R.id.history_progress);
 
-        String token = getIntent().getExtras().getString(TOKEN);
+        token = getIntent().getExtras().getString(TOKEN);
 
-        initNavigation(token);
-        requestHistory(token, currentPage);
+        initNavigation();
+        requestHistory();
     }
 
-    private void initNavigation(String token) {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CURRENT_PAGE, currentPage);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        currentPage = savedInstanceState.getInt(CURRENT_PAGE, 1);
+        if (currentPage != 1) {
+            requestHistory();
+        }
+    }
+
+    private void initNavigation() {
         FloatingActionButton nextFab = (FloatingActionButton) findViewById(R.id.fab_next);
         nextFab.setOnClickListener(view -> {
             if (currentPage < pageCount) {
                 currentPage++;
-                requestHistory(token, currentPage);
+                requestHistory();
             } else {
                 Toast.makeText(HistoryActivity.this, R.string.this_is_last_page, Toast.LENGTH_SHORT).show();
             }
@@ -61,17 +77,17 @@ public class HistoryActivity extends AppCompatActivity implements Const {
         prevFab.setOnClickListener(view -> {
             if (currentPage > 1) {
                 currentPage--;
-                requestHistory(token, currentPage);
+                requestHistory();
             } else {
                 Toast.makeText(HistoryActivity.this, R.string.this_is_first_page, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void requestHistory(String token, int pageNumber) {
+    private void requestHistory() {
         showProgress(true);
         //empty strings says that we request history for whole period
-        App.getApi().getHistory(token, "", "", pageNumber, PER_PAGES).enqueue(new Callback<HistoryModel>() {
+        App.getApi().getHistory(token, "", "", currentPage, PER_PAGES).enqueue(new Callback<HistoryModel>() {
             @Override
             public void onResponse(Call<HistoryModel> call, Response<HistoryModel> response) {
                 if (response.code() == SUCCESS_CODE && response.body() != null) {
