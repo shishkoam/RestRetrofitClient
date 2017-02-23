@@ -1,9 +1,10 @@
-package com.yo.shishkoam.restclienttest;
+package com.yo.shishkoam.restclienttest.activities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.yo.shishkoam.restclienttest.R;
 
 /**
  * Created by User on 21.02.2017
@@ -21,10 +22,7 @@ public class RegistrationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // app icon in action bar clicked; go home
-                Intent intent = new Intent(this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

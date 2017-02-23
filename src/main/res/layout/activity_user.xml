@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/nice_snow_2"
     android:fitsSystemWindows="true"
-    tools:context="com.yo.shishkoam.restclienttest.UserActivity">
+    tools:context="com.yo.shishkoam.restclienttest.activities.UserActivity">
 
     <include layout="@layout/content_user" />
 

@@ -1,17 +1,19 @@
-package com.yo.shishkoam.restclienttest;
+package com.yo.shishkoam.restclienttest.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yo.shishkoam.restclienttest.App;
+import com.yo.shishkoam.restclienttest.Consts;
+import com.yo.shishkoam.restclienttest.R;
 import com.yo.shishkoam.restclienttest.api.models.UserModel;
 
 import retrofit2.Call;
@@ -21,7 +23,7 @@ import retrofit2.Response;
 /**
  * Created by User on 21.02.2017
  */
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity implements Consts {
 
     private View progressView;
     private View contentView;
@@ -38,17 +40,20 @@ public class UserActivity extends AppCompatActivity {
         nameTextView = (TextView) findViewById(R.id.name);
         profileProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         profileProgressTextView = (TextView) findViewById(R.id.progress_text);
+
+        View exitButton = findViewById(R.id.exit);
+        exitButton.setOnClickListener(v -> onBackPressed());
+
         View historyButton = findViewById(R.id.payment_history);
-        String token = getIntent().getExtras().getString("token");
+        String token = getIntent().getExtras().getString(TOKEN);
         historyButton.setOnClickListener(v -> {
             Intent intent = new Intent(UserActivity.this, HistoryActivity.class);
-            intent.putExtra("token", token);
+            intent.putExtra(TOKEN, token);
             startActivity(intent);
         });
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(view -> onBackPressed());
 
         showProgress(true);
         requestUser(token);
@@ -77,7 +82,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
                 showProgress(false);
-                Toast.makeText(UserActivity.this, "An error occurred during networking", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserActivity.this, R.string.network_error, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -85,19 +90,19 @@ public class UserActivity extends AppCompatActivity {
     private void setupUserProgressToUI(String firstName, Object email, String lastName, Object locale, String phone) {
         int progress = 0;
         if (firstName != null && !firstName.equals("")) {
-            progress ++;
+            progress++;
         }
         if (email != null) {
-            progress ++;
+            progress++;
         }
         if (lastName != null && !lastName.equals("")) {
-            progress ++;
+            progress++;
         }
         if (locale != null) {
-            progress ++;
+            progress++;
         }
         if (phone != null && !phone.equals("")) {
-            progress ++;
+            progress++;
         }
         int result = progress * 100 / 5;
         profileProgressBar.setProgress(result);
@@ -105,7 +110,7 @@ public class UserActivity extends AppCompatActivity {
     }
 
     /**
-     * Shows the progress UI and hides the login form.
+     * Shows the progress UI and hides the user form.
      */
     private void showProgress(final boolean show) {
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);

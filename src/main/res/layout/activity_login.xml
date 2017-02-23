@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.yo.shishkoam.restclienttest.LoginActivity">
+    tools:context="com.yo.shishkoam.restclienttest.activities.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -85,7 +85,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/email_sign_in_button"
+                android:id="@+id/sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                 android:layout_weight="1"
                 android:background="@color/middle_grey"
                 android:drawableLeft="@drawable/questions"
-                android:paddingLeft="4dp"
+                android:paddingLeft="@dimen/small_margin"
                 android:text="@string/info"
                 android:textStyle="bold" />
 
@@ -144,7 +144,7 @@
                 android:layout_weight="1"
                 android:background="@color/middle_grey"
                 android:drawableLeft="@drawable/cashier_machine"
-                android:paddingLeft="4dp"
+                android:paddingLeft="@dimen/small_margin"
                 android:text="@string/terminals"
                 android:textStyle="bold" />
         </LinearLayout>

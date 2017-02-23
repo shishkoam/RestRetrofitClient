@@ -1,4 +1,4 @@
-package com.yo.shishkoam.restclienttest;
+package com.yo.shishkoam.restclienttest.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -6,14 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.yo.shishkoam.restclienttest.App;
+import com.yo.shishkoam.restclienttest.Consts;
+import com.yo.shishkoam.restclienttest.R;
 import com.yo.shishkoam.restclienttest.api.models.TokenModel;
 
 import retrofit2.Call;
@@ -24,14 +25,8 @@ import retrofit2.Response;
  * A login screen that offers login via email/password.
  * Created by User on 21.02.2017
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements Consts {
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    // UI references.
     private EditText phoneView;
     private EditText passwordView;
     private View progressView;
@@ -45,19 +40,16 @@ public class LoginActivity extends AppCompatActivity {
         phoneView = (EditText) findViewById(R.id.phone);
 
         passwordView = (EditText) findViewById(R.id.password);
-        passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
+        passwordView.setOnEditorActionListener((textView, id, keyEvent) -> {
+            if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                attemptLogin();
+                return true;
             }
+            return false;
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(view -> attemptLogin());
+        Button signInButton = (Button) findViewById(R.id.sign_in_button);
+        signInButton.setOnClickListener(view -> attemptLogin());
 
         loginFormView = findViewById(R.id.login_form);
         progressView = findViewById(R.id.progress);
@@ -119,12 +111,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void requestToken(String email, String password) {
-        App.getApi().getToken("password", email, password).enqueue(new Callback<TokenModel>() {
+        App.getApi().getToken(PASSWORD, email, password).enqueue(new Callback<TokenModel>() {
             @Override
             public void onResponse(Call<TokenModel> call, Response<TokenModel> response) {
                 if (response.code() == 200) {
                     Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-                    intent.putExtra("token", response.body().getTokenType() + " " + response.body().getAccessToken());
+                    intent.putExtra(TOKEN, response.body().getTokenType() + " " + response.body().getAccessToken());
                     startActivity(intent);
                 } else {
                     Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_SHORT).show();
@@ -142,12 +134,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private static boolean validatePhoneNumber(String phoneNo) {
         return phoneNo.matches("\\d{12}");
-
     }
 
-
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 4;
     }
 

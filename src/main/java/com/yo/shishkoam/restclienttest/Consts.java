@@ -5,5 +5,6 @@ package com.yo.shishkoam.restclienttest;
  */
 
 public interface Consts {
-
+    String TOKEN = "token";
+    String PASSWORD = "password";
 }

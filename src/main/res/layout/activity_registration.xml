@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.yo.shishkoam.restclienttest.RegistrationActivity">
+    tools:context="com.yo.shishkoam.restclienttest.activities.RegistrationActivity">
 
     <TextView
         android:layout_width="match_parent"

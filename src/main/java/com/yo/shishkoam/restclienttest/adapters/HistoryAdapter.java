@@ -1,4 +1,4 @@
-package com.yo.shishkoam.restclienttest;
+package com.yo.shishkoam.restclienttest.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.yo.shishkoam.restclienttest.R;
 import com.yo.shishkoam.restclienttest.api.models.history.Item;
 
 import java.util.List;
@@ -25,8 +26,7 @@ public class HistoryAdapter extends ArrayAdapter {
         super(context, R.layout.history_item);
         ctx = context;
         this.items = items;
-        lInflater = (LayoutInflater) ctx
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
