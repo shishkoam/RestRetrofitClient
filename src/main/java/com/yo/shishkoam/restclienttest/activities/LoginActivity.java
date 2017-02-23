@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yo.shishkoam.restclienttest.App;
-import com.yo.shishkoam.restclienttest.Consts;
+import com.yo.shishkoam.restclienttest.Const;
 import com.yo.shishkoam.restclienttest.R;
 import com.yo.shishkoam.restclienttest.api.models.TokenModel;
 
@@ -26,7 +25,7 @@ import retrofit2.Response;
  * A login screen that offers login via email/password.
  * Created by User on 21.02.2017
  */
-public class LoginActivity extends AppCompatActivity implements Consts {
+public class LoginActivity extends AppCompatActivity implements Const {
 
     private EditText phoneView;
     private EditText passwordView;
@@ -118,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements Consts {
         App.getApi().getToken(PASSWORD, email, password).enqueue(new Callback<TokenModel>() {
             @Override
             public void onResponse(Call<TokenModel> call, Response<TokenModel> response) {
-                if (response.code() == 200) {
+                if (response.code() == SUCCESS_CODE) {
                     Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                     intent.putExtra(TOKEN, response.body().getTokenType() + " " + response.body().getAccessToken());
                     startActivity(intent);

@@ -6,7 +6,7 @@
         android:icon="@drawable/russia"
         android:title="@string/rus" />
 
-
+    <!--this is bad practice, think how to replace-->
     <header android:summary="@string/common" />
 
     <header
@@ -17,6 +17,7 @@
         android:summary="@string/default_address"
         android:title="@string/my_address" />
 
+    <!--this is bad practice, think how to replace-->
     <header android:summary="@string/account_modify" />
 
     <header android:title="@string/limits" />

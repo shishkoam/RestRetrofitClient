@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yo.shishkoam.restclienttest.App;
-import com.yo.shishkoam.restclienttest.Consts;
+import com.yo.shishkoam.restclienttest.Const;
 import com.yo.shishkoam.restclienttest.R;
 import com.yo.shishkoam.restclienttest.api.models.UserModel;
 
@@ -22,7 +22,7 @@ import retrofit2.Response;
 /**
  * Created by User on 21.02.2017
  */
-public class UserActivity extends AppCompatActivity implements Consts {
+public class UserActivity extends AppCompatActivity implements Const {
 
     private View progressView;
     private View contentView;
@@ -67,15 +67,15 @@ public class UserActivity extends AppCompatActivity implements Consts {
             startActivity(intent);
         });
 
-        showProgress(true);
         requestUser(token);
     }
 
     private void requestUser(String token) {
+        showProgress(true);
         App.getApi().getUser(token).enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                if (response.code() == 200 && response.body() != null) {
+                if (response.code() == SUCCESS_CODE && response.body() != null) {
                     String firstName = response.body().getFirstName();
                     if (firstName != null) {
                         nameTextView.setText(firstName);

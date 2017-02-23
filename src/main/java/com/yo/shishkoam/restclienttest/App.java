@@ -17,7 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class App extends Application {
 
     private static EasyPayApi easyPayApi;
-    private Retrofit retrofit;
 
     private final static String ACCEPT_KEY = "Accept";
     private final static String ACCEPT = "application/json";
@@ -52,7 +51,7 @@ public class App extends Application {
         httpClient.addInterceptor(logging);
         httpClient.addInterceptor(contentType);
 
-        retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
