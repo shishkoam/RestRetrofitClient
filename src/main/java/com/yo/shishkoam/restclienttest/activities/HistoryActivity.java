@@ -91,7 +91,8 @@ public class HistoryActivity extends AppCompatActivity implements Const {
             @Override
             public void onResponse(Call<HistoryModel> call, Response<HistoryModel> response) {
                 if (response.code() == SUCCESS_CODE && response.body() != null) {
-                    HistoryAdapter adapter = new HistoryAdapter(HistoryActivity.this, response.body().getItems());
+                    HistoryAdapter adapter
+                            = new HistoryAdapter(HistoryActivity.this, response.body().getItems());
                     historyList.setAdapter(adapter);
                     pageCount = response.body().getNumberOfPages();
                 } else {
