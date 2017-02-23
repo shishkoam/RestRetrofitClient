@@ -1,0 +1,53 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="category_profile"
+        android:title="@string/contacts">
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/default_name"
+            android:inputType="textCapWords"
+            android:key="name_text"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/name" />
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/def_phone"
+            android:inputType="textCapWords"
+            android:key="phone_text"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/phone" />
+
+        <EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="@string/default_mail"
+            android:inputType="textCapWords"
+            android:key="email_text"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/email" />
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="category_profile"
+        android:title="Подписка">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="payments_switch"
+            android:title="@string/my_payments_settings" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="proposals_switch"
+            android:title="@string/interesting_proposals" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

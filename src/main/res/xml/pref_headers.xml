@@ -1,0 +1,31 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header
+        android:icon="@drawable/russia"
+        android:title="@string/rus" />
+
+
+    <header android:summary="@string/common" />
+
+    <header
+        android:fragment="com.yo.shishkoam.restclienttest.activities.SettingsActivity$GeneralPreferenceFragment"
+        android:title="@string/profile" />
+
+    <header
+        android:summary="@string/default_address"
+        android:title="@string/my_address" />
+
+    <header android:summary="Управление аккаунтом" />
+
+    <header android:title="@string/limits" />
+
+    <header android:title="@string/change_password" />
+
+    <header android:title="@string/activity" />
+
+    <header android:title="@string/delete_account" />
+
+
+</preference-headers>

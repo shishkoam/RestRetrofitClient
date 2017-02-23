@@ -1,4 +1,4 @@
-package com.yo.shishkoam.restclienttest;
+package com.yo.shishkoam.restclienttest.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.yo.shishkoam.restclienttest.App;
+import com.yo.shishkoam.restclienttest.Consts;
+import com.yo.shishkoam.restclienttest.R;
+import com.yo.shishkoam.restclienttest.adapters.HistoryAdapter;
 import com.yo.shishkoam.restclienttest.api.models.HistoryModel;
 
 import retrofit2.Call;
@@ -21,10 +25,12 @@ import retrofit2.Response;
 /**
  * Created by User on 21.02.2017
  */
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity implements Consts {
 
     private ListView historyList;
     private View progressView;
+    private int currentPage = 1;
+    private int pageSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +42,13 @@ public class HistoryActivity extends AppCompatActivity {
         historyList = (ListView) findViewById(R.id.history_list);
         progressView = findViewById(R.id.history_progress);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        FloatingActionButton nextFab = (FloatingActionButton) findViewById(R.id.fab_next);
+        nextFab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
-        String token = getIntent().getExtras().getString("token");
+        FloatingActionButton prevFab = (FloatingActionButton) findViewById(R.id.fab_prev);
+        prevFab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
+        String token = getIntent().getExtras().getString(TOKEN);
 
         //run request
         showProgress(true);

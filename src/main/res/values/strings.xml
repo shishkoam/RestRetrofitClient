@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">EasyPay</string>
 
-    <!-- Strings related to login -->
+    <!-- Strings related to main -->
     <string name="prompt_phone">Номер телефона</string>
     <string name="prompt_password">Пароль</string>
     <string name="action_sign_in">Войти</string>
@@ -37,4 +37,24 @@
     <string name="uan">"%d грн"</string>
     <string name="default_amount">0 грн</string>
     <string name="default_description">Описание платежа отсутствует</string>
+    <string name="title_activity_settings">Настройки</string>
+
+    <!-- Strings related to Settings -->
+    <string name="limits">Лимиты</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="delete_account">Удалить аккаунт</string>
+    <string name="activity">Активность</string>
+    <string name="my_address">Мои адреса</string>
+    <string name="profile">Профиль</string>
+    <string name="default_address">Анны Ахматовой 1, кв 313</string>
+    <string name="rus">Русский</string>
+    <string name="my_payments_settings">Мои платежи (квитанции)</string>
+    <string name="interesting_proposals">Выгодные предложения EasyPay</string>
+    <string name="def_phone">+380.........</string>
+    <string name="name">Имя</string>
+    <string name="phone">Телефон</string>
+    <string name="default_mail">name@domain.com</string>
+    <string name="email">Email</string>
+    <string name="contacts">Контакты</string>
+    <string name="common">Общее</string>
 </resources>

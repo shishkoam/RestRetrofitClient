@@ -43,6 +43,11 @@ public class UserActivity extends AppCompatActivity implements Consts {
 
         View exitButton = findViewById(R.id.exit);
         exitButton.setOnClickListener(v -> onBackPressed());
+        View settings = findViewById(R.id.settings);
+        settings.setOnClickListener(v -> {
+            Intent intent = new Intent(UserActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
 
         View historyButton = findViewById(R.id.payment_history);
         String token = getIntent().getExtras().getString(TOKEN);
